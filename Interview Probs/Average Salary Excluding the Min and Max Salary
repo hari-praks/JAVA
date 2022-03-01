@@ -1,0 +1,69 @@
+/*Input: salary = [4000,3000,1000,2000]
+Output: 2500.00000
+Explanation: Minimum salary and maximum salary are 1000 and 4000 respectively.
+Average salary excluding minimum and maximum salary is (2000+3000) / 2 = 2500 */
+
+class Solution {
+    public double average(int[] salary) {
+        for(int i=0;i<salary.length-1;i++)
+        {
+            if(salary[i]>salary[i+1])
+            {
+                int temp=salary[i+1];
+                salary[i+1]=salary[i];
+                salary[i]=temp;
+                i=-1;
+            }
+        }
+        double avg=0;
+        double add=0;
+        for(int j=1;j<salary.length-1;j++)
+        {
+            add=add+salary[j];
+        }
+        int p=salary.length-2;
+        avg=add/p;
+        return avg;
+        
+    }
+}class Solution {
+    public double average(int[] salary) {
+        for(int i=0;i<salary.length-1;i++)
+        {
+            if(salary[i]>salary[i+1])
+            {
+                int temp=salary[i+1];
+                salary[i+1]=salary[i];
+                salary[i]=temp;
+                i=-1;
+            }
+        }
+        double avg=0;
+        double add=0;
+        for(int j=1;j<salary.length-1;j++)
+        {
+            add=add+salary[j];
+        }
+        int p=salary.length-2;
+        avg=add/p;
+        return avg;
+        
+    }
+}
+
+/* Effective solution*/
+
+public double average(int[] salary) {
+	int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+
+	double sum = 0;
+	for(int i = 0; i < salary.length; i++) {
+		max = Math.max(max, salary[i]);
+		min = Math.min(min, salary[i]);
+
+		sum += salary[i];
+	}
+
+	sum -= (max + min);
+	return sum / (salary.length-2);
+}
