@@ -1,0 +1,28 @@
+/* Input: low = 3, high = 7
+Output: 3
+Explanation: The odd numbers between 3 and 7 are [3,5,7].*/
+
+class Solution {
+    public int countOdds(int low, int high) {
+        if(low % 2 != 0) low--; //reducing odd number to even and dividing by 2 to get the results
+        if(high % 2 != 0) high++;
+        return (high-low)/2;
+    }
+}
+
+class Solution {
+    public int countOdds(int l, int h) {
+        if(h%2==0 && l%2==0)
+        {
+            return (h-l)/2; //if both are even we should not include [2,10] 
+        }
+        else if(h%2==1 && l%2==1)
+        {
+            return ((h-l)/2)+1;  //if both are odd we should include [3,7]
+        }
+        else
+        {
+            return ((h-l)/2+1); //if one is even and other is odd [3,6]
+        }
+    }
+}
