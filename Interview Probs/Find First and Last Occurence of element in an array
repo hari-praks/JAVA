@@ -1,0 +1,80 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int high=nums.length-1;
+        int low=0;
+        int res[]=new int[2];
+     
+        res[0]=firstOcc(low,high,nums,target);
+        res[1]=bsearch(low,high,nums,target);
+        return res;
+    }
+    int firstOcc(int low,int high,int[] arr,int x)
+	{
+	    
+	    while(low<=high)
+	    {
+            int mid=(low+high)/2;
+	        if(x>arr[mid])
+	        {
+	            return firstOcc(mid+1,high,arr,x);
+	        }
+	        else if(x<arr[mid])
+	        {
+	            return firstOcc(low,mid-1,arr,x);
+	        }
+	        else{
+	            if(mid==0) 
+	            {
+	                return mid;
+	            }
+	            else if(arr[mid-1]!=arr[mid]) //only if mid!=0 this condition shd apply
+	            {
+	                return mid;
+	            }
+	            else{
+	                return firstOcc(low,mid-1,arr,x);
+	            }
+	        }
+	       
+	    }
+	     return -1;
+    }
+    int bsearch(int l,int h, int[] a,int t)
+	{
+	    
+	    while(l<=h)
+	    {
+            int mid1=(l+h)/2;
+	        if(t>a[mid1])
+	        {
+	            return bsearch(mid1+1,h,a,t);
+	        }
+	        else if(t<a[mid1])
+	        {
+	            return bsearch(l,mid1-1,a,t);
+	        }
+	        else{
+	            if(mid1==a.length-1)
+	            {
+	                return mid1;
+	            }
+	            else if(a[mid1+1]!=a[mid1])
+	            {
+	                return mid1;
+	            }
+	            else{
+	                return bsearch(mid1+1,h,a,t);
+	            }
+	        }
+	       
+	    }
+	     return -1;
+    }
+	    
+}
+/*
+
+Input: nums = [5,7,7,8,8,10], target = 8
+Output: [3,4]
+
+*/
