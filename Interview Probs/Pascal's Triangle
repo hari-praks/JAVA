@@ -1,0 +1,39 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        ArrayList res=new ArrayList<ArrayList<Integer>>(numRows);
+        ArrayList<Integer>[] arrlst= new ArrayList[numRows];
+       
+        int arr[][]=new int[numRows][numRows];
+        for(int i=0;i<numRows;i++)
+        {
+             for(int j=0;j<=i;j++)
+            {
+                 arr[i][j]=1;
+             }
+        }
+        for(int i=2;i<numRows;i++)
+        {
+            for(int j=2;j<=i;j++)
+            {
+                arr[i][j-1]=arr[i-1][j-2]+arr[i-1][j-1];
+            }
+        }
+        for(int i=0;i<numRows;i++)
+        {
+           arrlst[i] = new ArrayList<Integer>();
+            for(int j=0;j<=i;j++)
+            {
+                arrlst[i].add(arr[i][j]);
+            }
+           res.add(arrlst[i]); 
+            
+        }
+        return res;
+        
+
+    }
+   
+}
+
+/*Input: numRows = 5
+Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]*/
