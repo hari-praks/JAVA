@@ -1,0 +1,52 @@
+/*Amazon Engineering maintains a large number of logs of operations across all products A software engineer is debugging an issue in a product. 
+An efficient way to analyze logs is to write automated scripts to check for patterns. 
+The engineer wants to find the maximum number of times a target word can be obtained by rearranging a subset of characters in a log entry. 
+Given a log entry sand target word t, the target word can be obtained by selecting some subset of characters from s that can be rearranged to form string t 
+and removing them from s. Determine the maximum number of times the target word can be removed from the given log entry.
+Example :
+
+Input:-
+ 1. "abacbc"
+ 2. "bca"
+Output :-
+ 2
+ */
+
+public class Main
+{
+	public static void main(String[] args) {
+	    String s="aaaaa";
+	    String t="aa";
+	    List<Integer> arr1=new ArrayList<Integer>();
+	    List<Integer> arr2=new ArrayList<Integer>();
+	    arr1=count(s);
+	    arr2=count(t);
+	    int res=Integer.MAX_VALUE;
+	  for(int i=0;i<arr1.size();i++)
+	  {
+	      int temp=(arr1.get(i)/arr2.get(i));
+	      res=Math.min(res,temp);
+	  }
+	  System.out.println(res);
+	}
+	static List count(String s)
+	{
+	    HashMap<Character,Integer> hm=new HashMap<Character,Integer>();
+	    //ArrayList<Integer> arrlst=new ArrayList<Integer>();
+	    char  arr[]=s.toCharArray();
+	    for(int i=0;i<arr.length;i++)
+	    {
+	        if(hm.containsKey(arr[i]))
+	        {
+	            hm.put(arr[i],hm.get(arr[i])+1);
+	        }
+	        else{
+	            hm.put(arr[i],1);
+	        }
+	    }
+	    Collection values = hm.values();
+        List arrlst= new ArrayList(values);
+	    
+	    return arrlst;
+	}
+}
