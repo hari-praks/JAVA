@@ -1,0 +1,39 @@
+/*Amazon Shopping provides a product-search feature that makes browsing products easier. Instead of showing exact matches only, it also displays transformable results for better browsing, A word a is said to be transformable to a word b if a is a subsequence of b. Given searchWord and resultWord, find the minimum number of characters that must be appended at the end of searchWord, such that resultWord is a subsequence of the modified searchWord.
+Example :
+
+Input :-
+searchWord="armaze"
+resultWord = "amazon"
+Output :-
+ 2
+ */
+
+public class Main
+{
+	public static void main(String[] args) {
+		String s="armaze";
+		String res="amazon";
+		char arr[]=s.toCharArray();
+		char arr1[]=res.toCharArray();
+		int spoint=0;
+		int respoint=0;
+		int n=s.length();
+		String emp="";
+		while(spoint!=n)
+		{
+		   if(arr[spoint]==arr1[respoint])
+		   {
+		       emp+=arr[spoint];
+		       spoint++;
+		       respoint++;
+		   }
+		   else{
+		       spoint++;
+		   }
+		}
+		//System.out.println(emp);
+		int result=res.length()-emp.length();
+		System.out.println(result);
+		
+	}
+}
